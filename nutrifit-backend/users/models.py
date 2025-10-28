@@ -6,6 +6,17 @@ from django.db import models
 class CustomUser(AbstractUser):
     email = models.EmailField(unique=True, verbose_name="email address")
 
+    def __str__(self):
+        return self.username
+
+    def save(self, *args, **kwargs):
+        is_new = not self.pk
+
+        super().save(*args, **kwargs)
+
+        if is_new:
+            Profile.objects.create(user=self)
+
 
 class Profile(models.Model):
     class Gender(models.TextChoices):
