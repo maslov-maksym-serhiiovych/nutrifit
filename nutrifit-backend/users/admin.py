@@ -17,5 +17,11 @@ class CustomUserAdmin(UserAdmin):
     fieldsets = UserAdmin.fieldsets
     add_fieldsets = UserAdmin.add_fieldsets
 
+    def get_inline_instances(self, request, obj=None):
+        if obj is None:
+            return []
+        else:
+            return super().get_inline_instances(request, obj)
+
 
 admin.site.register(CustomUser, CustomUserAdmin)
