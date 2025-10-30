@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
-
+from progress.views import WeightLogViewSet, CalorieLogViewSet
 from users.views import UserProfileViewSet, RegisterView
 from recipes.views import CategoryViewSet, IngredientViewSet, RecipeViewSet
 from workouts.views import ExerciseViewSet, WorkoutViewSet
@@ -15,6 +15,8 @@ router.register(r'ingredients', IngredientViewSet, basename='ingredient')
 router.register(r'recipes', RecipeViewSet, basename='recipe')
 router.register(r'exercises', ExerciseViewSet, basename='exercise')
 router.register(r'workouts', WorkoutViewSet, basename='workout')
+router.register(r'progress/weight', WeightLogViewSet, basename='weight-log')
+router.register(r'progress/calories', CalorieLogViewSet, basename='calorie-log')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
