@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework_simplejwt',
+    'dj_rest_auth',
+    'dj_rest_auth.registration',
     'users.apps.UsersConfig',
     'recipes.apps.RecipesConfig',
     'workouts.apps.WorkoutsConfig'
@@ -136,4 +139,11 @@ REST_FRAMEWORK = {
     ],
 
     'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.IsAuthenticated'],
+    'DEFAULT_AUTHENTICATION_CLASSES': ['rest_framework_simplejwt.authentication.JWTAuthentication']
 }
+
+REST_USE_JWT = True
+JWT_AUTH_COOKIE = 'nutrifit-access-token'
+JWT_AUTH_REFRESH_COOKIE = 'nutrifit-refresh-token'
+SESSION_LOGIN = False
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
