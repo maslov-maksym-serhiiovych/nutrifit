@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'users.apps.UsersConfig',
     'recipes.apps.RecipesConfig',
-    'workouts.apps.WorkoutsConfig'
+    'workouts.apps.WorkoutsConfig',
+    'progress.apps.ProgressConfig'
 ]
 
 MIDDLEWARE = [
