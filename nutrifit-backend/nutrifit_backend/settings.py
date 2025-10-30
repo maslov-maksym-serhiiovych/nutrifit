@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 import os
+from datetime import timedelta
 from pathlib import Path
 from dotenv import load_dotenv
 
@@ -40,8 +41,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework_simplejwt',
-    'dj_rest_auth',
-    'dj_rest_auth.registration',
     'users.apps.UsersConfig',
     'recipes.apps.RecipesConfig',
     'workouts.apps.WorkoutsConfig'
@@ -142,8 +141,10 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': ['rest_framework_simplejwt.authentication.JWTAuthentication']
 }
 
-REST_USE_JWT = True
-JWT_AUTH_COOKIE = 'nutrifit-access-token'
-JWT_AUTH_REFRESH_COOKIE = 'nutrifit-refresh-token'
-SESSION_LOGIN = False
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
+    'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
+    'SLIDING_TOKEN_LIFETIME': timedelta(days=30),
+    'SLIDING_TOKEN_REFRESH_LIFETIME_LATE_USER': timedelta(days=1),
+    'SLIDING_TOKEN_LIFETIME_LATE_USER': timedelta(days=30),
+}
